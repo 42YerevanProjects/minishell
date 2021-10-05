@@ -7,4 +7,6 @@ int main(int argc, char **argv, char **env)
 	(void) argc;
 	(void) argv;
 	init(&mini, env);
+	increment_shell_level(mini.env);
 }
+
