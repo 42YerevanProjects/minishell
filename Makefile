@@ -7,13 +7,15 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 
-all: ${NAME} 
-	${NAME}:${OBJS}
-		@echo "\n"
-		@${MAKE} -C ./libft/
-		@echo "\033[0;32mCompiling minishell..."
-		@${CC} ${CFLAGS} ${OBJ} ./libft/libft.a -o ${NAME} 	
-		@echo "\n\033[0mDone !"
+
+
+all: ${NAME}
+${NAME}:${OBJS}
+	@echo "\n"
+	@echo "\033[0;32mCompiling minishell..."
+	@${MAKE} -C ./libft/
+	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME} 	
+	@echo "\n\033[0;32mDone !"
 
 clean:
 	@echo "\033[0;31mCleaning libft..."
