@@ -25,23 +25,22 @@ void	increment_shell_level(t_env *env)
 	char	*env_name;
 	char	*shlvl_value;
 	int		shlvl;
-	t_env	*env_head;
+	t_env	*head;
 	
-	env_head = env;
+	head = env;
 	shlvl_value = getenv("SHLVL");
 	if (ft_strcmp(shlvl_value, "") == 0)
 		return ;
 	shlvl = ft_atoi(shlvl_value) + 1;
-	while (env_head && env_head->next)
+	while (head && head->next)
 	{
-		env_name = get_env_name(env_head->value); 
+		env_name = get_env_name(head->value); 
 		if (ft_strcmp("SHLVL", env_name) == 0)
 		{
-			env_head->value = ft_strjoin("SHLVL=", ft_itoa(shlvl));
+			head->value = ft_strjoin("SHLVL=", ft_itoa(shlvl));
 			ft_memdel(env_name);
 			return ;
 		}
-		env_head = env_head->next;
+		head = head->next;
 	}
-//	free(shlvl_value);
 }
