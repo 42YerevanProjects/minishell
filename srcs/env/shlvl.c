@@ -13,7 +13,10 @@ static char	*get_env_name(char *value)
 	env_name = malloc(size + 1);
 	i = 0;
 	while (i < size)
-		env_name[i] = value[i++];
+	{
+		env_name[i] = value[i];
+		i++;
+	}
 	return env_name;
 }
 
@@ -29,7 +32,6 @@ void	increment_shell_level(t_env *env)
 	if (ft_strcmp(shlvl_value, "") == 0)
 		return ;
 	shlvl = ft_atoi(shlvl_value) + 1;
-	ft_memdel(shlvl_value);
 	while (env_head && env_head->next)
 	{
 		env_name = get_env_name(env_head->value); 
@@ -41,4 +43,5 @@ void	increment_shell_level(t_env *env)
 		}
 		env_head = env_head->next;
 	}
+//	free(shlvl_value);
 }
