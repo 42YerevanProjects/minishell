@@ -86,8 +86,8 @@ typedef struct s_mini
 	int		no_exec;
 }				t_mini;
 
+// utils
 int		init(t_mini *mini, char **env);
-
 void	reset_fds(t_mini *mini);
 
 // env
