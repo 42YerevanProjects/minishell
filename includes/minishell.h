@@ -3,8 +3,6 @@
 
 # include "../libft/libft.h"
 # include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <fcntl.h>
 # include <string.h>
 # include <dirent.h>
@@ -12,6 +10,8 @@
 # include <signal.h>
 # include <limits.h>
 # include <errno.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define EMPTY 0
 # define CMD 1
@@ -31,7 +31,6 @@
 # define EXPANSION -36
 # define DIRECTORY 126
 # define UNKNOWN_COMMAND 127
-# define BUFF_SIZE 4096
 
 # define NOSKIP 0
 # define SKIP 1
@@ -86,11 +85,20 @@ typedef struct s_mini
 	int		no_exec;
 }				t_mini;
 
+extern t_sig g_sig;
+
 // utils
 int		init(t_mini *mini, char **env);
 void	reset_fds(t_mini *mini);
 
 // env
 void	increment_shell_level(t_env *env);
+
+//signal
+void	sig_init();
+void	sig_int();
+void	sig_quit(int code);
+
+// parsing
 
 #endif

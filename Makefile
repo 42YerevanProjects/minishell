@@ -1,9 +1,11 @@
 NAME = minishell
-SRCS = srcs/main.c srcs/env/shlvl.c utils/fd.c utils/init.c
+SRCS = srcs/main.c srcs/env/shlvl.c utils/fd.c utils/init.c srcs/signal.c
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+
+Include = -lreadline
 
 RM = rm -rf
 
@@ -14,7 +16,7 @@ ${NAME}:${OBJS}
 	@echo "\n"
 	@echo "\033[0;32mCompiling minishell..."
 	@${MAKE} -C ./libft/
-	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME} 	
+	@${CC} ${CFLAGS} ${OBJS} ${Include} ./libft/libft.a -o ${NAME} 	
 	@echo "\n\033[0;32mDone !"
 
 clean:
