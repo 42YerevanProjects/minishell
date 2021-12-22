@@ -15,7 +15,7 @@ void	increment_shell_level(t_env *env)
 	{
 		if (ft_strncmp("SHLVL", head->value, 5) == 0)
 		{
-			head->value = ft_strjoin("SHLVL=", ft_itoa(shlvl));
+ 			head->value = ft_strjoin("SHLVL=", ft_itoa(shlvl));
 			return ;
 		}
 		head = head->next;
