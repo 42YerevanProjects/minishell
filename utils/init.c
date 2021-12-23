@@ -38,5 +38,6 @@ int	init(t_mini *mini, char **env)
 	mini->cmd_count = 0;
 	if (init_env(&mini->env, env) == -1)
 		return (-1);
+	increment_shell_level(mini->env);
 	return 0;
 }
