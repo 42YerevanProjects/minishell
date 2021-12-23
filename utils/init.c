@@ -34,15 +34,9 @@ static int init_env(t_env **mini_env, char **env)
 
 int	init(t_mini *mini, char **env)
 {
-	mini->ret = 0;
-	mini->exit = 0;
-	mini->no_exec = 0;
-	mini->in = dup(STDIN);
-	mini->out = dup(STDOUT);
-	reset_fds(mini);
+	mini->status = 0;
+	mini->cmd_count = 0;
 	if (init_env(&mini->env, env) == -1)
 		return (-1);
-	if (init_env(&mini->secret_env, env) == -1)
-		return -1;
 	return 0;
 }

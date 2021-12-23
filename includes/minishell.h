@@ -35,6 +35,17 @@
 # define NOSKIP 0
 # define SKIP 1
 
+/* For storing information about every command */
+typedef struct	s_cmd
+{
+	char	**args;
+	int		in;
+	int		out;
+	char	**heredoc;
+	char	**refine;
+}				t_cmd;
+
+/* For storing information about every token as a doubly linked node */
 typedef struct s_token 
 {
 	char			*str;
@@ -43,6 +54,7 @@ typedef struct s_token
 	struct s_token	*next;
 }				t_token;
 
+/* For dealing with expansions */
 typedef struct s_expansion
 {
 	char	*new_arg;
@@ -50,42 +62,35 @@ typedef struct s_expansion
 	int		j;
 }				t_expansion;
 
-typedef struct s_sig
-{
-	pid_t	pid;
-	int		sigint;
-	int		sigquit;
-	int		status;
-}				t_sig;
-
+/* For storing the environment variables line by line as a node */
 typedef struct s_env
 {
 	char			*value;
 	struct s_env	*next;
 }				t_env;
 
+/* For refining the line by storing appropriate values from env */
+typedef struct s_refine
+{
+	char		*ptr;
+	char		*prefix;
+	char		*postfix;
+	char		*val;
+}				t_refine;
+
+/* TODO: Woking with heredocs */
 
 typedef struct s_mini
 {
 	t_token	*start;
 	t_env	*env;
-	t_env	*secret_env;
-	int		in;
-	int		out;
-	int		fdin;
-	int		fdout;
-	int		pipin;
-	int		pipout;
-	int		pid;
-	int		charge;
-	int		parent;
-	int		last;
-	int		ret;
-	int		exit;
-	int		no_exec;
+	t_cmd	*commands;
+	pid_t	*fam;
+	int		cmd_count;
+	int		status;
 }				t_mini;
 
-extern t_sig g_sig;
+extern t_mini g_mini;
 
 // utils
 int		init(t_mini *mini, char **env);
@@ -95,9 +100,6 @@ void	reset_fds(t_mini *mini);
 void	increment_shell_level(t_env *env);
 
 //signal
-void	sig_init();
-void	sig_int();
-void	sig_quit(int code);
 
 // parsing
 
