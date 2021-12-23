@@ -12,6 +12,12 @@ int main(int argc, char **argv, char **env)
 	while (1)
 	{
 		line = readline("\033[0;36m\033[1m minishell ▸ \033[0m");
+		if (!line)
+		{
+			ft_putstr_fd("minishell: exit 💚", STDERR);
+			return (0);
+		}
+			
 
 	}
 	printf("%s\n", line);
