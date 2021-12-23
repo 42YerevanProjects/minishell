@@ -4,7 +4,7 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
-# include <string.h>
+# include <termios.h>
 # include <dirent.h>
 # include <sys/wait.h>
 # include <signal.h>
@@ -90,16 +90,15 @@ typedef struct s_mini
 	int		status;
 }				t_mini;
 
-extern t_mini g_mini;
 
 // utils
 int		init(t_mini *mini, char **env);
-void	reset_fds(t_mini *mini);
-
-// env
 void	increment_shell_level(t_env *env);
 
 //signal
+void	sig_init(void);
+void	sig_default(void);
+void	sig_ignore(void);
 
 // parsing
 
