@@ -1,43 +1,63 @@
 #include "../includes/minishell.h"
 
+/* UTILS FOR SIGNALS */
+
+static void	reprompt(int sig)
+{
+	(void)sig;
+	suppress_output();
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
+static void	suppress_output(void)
+{
+	struct termios	termios_p;
+
+	if (tcgetattr(0, &termios_p))
+		perror("minishell: tcgetattr");
+	termios_p.c_lflag &= ~ECHOCTL;
+	if (tcsetattr(0, 0, &termios_p))
+		perror("minishell: tcsetattr");
+}
+
+static void	sigquit(int sig)
+{
+	(void)sig;
+	suppress_output();
+	rl_on_new_line();
+	rl_redisplay();
+}
+
+static void	interrupt(int sig)
+{
+	(void)sig;
+	suppress_output();
+	rl_on_new_line();
+	rl_redisplay();
+	exit(1);
+}
+
+
+/* SIGNAL FUNCTIONS */
+
 void	sig_init(void)
 {
-	g_sig.sigint = 0;
-	g_sig.sigquit = 0;
-	g_sig.status = 0;
-	g_sig.pid = 0;
+	signal(SIGINT, reprompt);
+	signal(SIGQUIT, sigquit);
 }
 
-void	sig_int(void)
+void	sig_default(void)
 {
-	
-	if (g_sig.pid == 0)
-	{
-		ft_putendl_fd("\b\b  ", STDERR);
-		ft_putstr_fd("\033[0;36m\033[1m🤬 minishell ▸ \033[0m", STDERR);
-		g_sig.status = 1;
-	}
-	else
-	{
-		ft_putendl_fd("", STDERR);
-		g_sig.status = 130;
-	}
-	g_sig.sigint = 1;
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }
 
-void	sig_quit(int code)
+void	sig_ignore(void)
 {
-	char *nbr;
-
-	nbr = ft_itoa(code);
-	if (g_sig.pid != 0)
-	{
-		ft_putstr_fd("Quit: ", STDERR);
-		ft_putendl_fd(nbr, STDERR);
-		g_sig.status = 131;
-		g_sig.sigquit = 1;
-	}
-	else
-		ft_putstr_fd("\b\b  \b\b", STDERR);
-	ft_memdel(nbr);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
+
