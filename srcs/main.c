@@ -17,7 +17,7 @@ int main(int argc, char **argv, char **env)
 			ft_putstr_fd("minishell: exit 💚", STDERR);
 			return (0);
 		}
-			
+		parse(&mini, line);
 
 	}
 	printf("%s\n", line);
