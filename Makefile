@@ -1,5 +1,6 @@
 NAME = minishell
-SRCS = srcs/main.c srcs/signal.c utils/shlvl.c utils/init.c
+SRCS = srcs/main.c srcs/signal.c utils/shlvl.c utils/init.c utils/token_num.c utils/ft_isspace.c \
+	   srcs/parse/parse.c srcs/parse/extract_token.c srcs/parse/get_tokens.c
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
