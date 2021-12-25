@@ -18,9 +18,7 @@ int main(int argc, char **argv, char **env)
 			return (0);
 		}
 		parse(&mini, line);
-
 	}
-	printf("%s\n", line);
 	return (0);
 }
 
