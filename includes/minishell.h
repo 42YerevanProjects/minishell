@@ -82,8 +82,11 @@ typedef struct s_mini
 /* UTILS */
 int		init(t_mini *mini, char **env);
 void	increment_shell_level(t_env *env);
-int		ft_isspace(char c);
+int		ft_matrixlen(char **matrix);
+int		ft_minishell_error(char *msg);
 int		token_num(char *line);
+int		ft_isspace(char c);
+int		ft_abs(int nb);
 
 /* SIGNALS */
 void	sig_init(void);
