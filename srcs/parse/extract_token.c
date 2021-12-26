@@ -2,7 +2,7 @@
 
 static int	treat_pipe_and_redirection(t_mini *mini, char *line, t_expansion *exp)
 {
-	if (exp->i != exp->j || mini->token->token_array[0] != '\0')
+	if (exp->i != exp->j || mini->tokens->token_array[0] != NULL)
 	{
 		// TODO: Deal with adding token
 	}
