@@ -89,6 +89,11 @@ int		token_num(char *line);
 int		ft_isspace(char c);
 int		ft_abs(int nb);
 
+/* ENV UTILS */
+char	*ft_getenv(char *var);
+char	*ft_separate_identifier(char *var);
+int		ft_is_valid_identifier(char *var);
+
 /* SIGNALS */
 void	sig_init(void);
 void	sig_default(void);
@@ -98,5 +103,6 @@ void	sig_ignore(void);
 void	parse_and_execute(char *line);
 void	get_tokens(char *line);
 int		extract_token(char *line, char **token, char **quote);
+void	ft_append_token(char **token, char *line, int len, int expand);
 
 #endif
