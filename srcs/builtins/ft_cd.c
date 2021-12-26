@@ -22,7 +22,7 @@ static int	ft_change_dir(t_cmd *cmd, int *status, char *oldpwd)
 		else
 		{
 			free(oldpwd);
-			return (ft_error("cd", "OLDPWD not set"));
+			return (ft_minishell_error("cd: OLDPWD not set"));
 		}
 	}
 	/* else if a path is specified */
