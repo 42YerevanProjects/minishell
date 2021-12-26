@@ -1,5 +1,13 @@
 #include "../../includes/minishell.h"
 
+static int	treat_pipe_and_redirection(t_mini *mini, char *line, t_expansion *exp)
+{
+	if (exp->i != exp->j || mini->token->token_array[0] != '\0')
+	{
+		// TODO: Deal with adding token
+	}
+}
+
 static void	token_init(t_mini *mini, char *line, t_expansion *exp)
 {
 	int	num;
@@ -33,8 +41,9 @@ int	extract_token(t_mini *mini, char *line)
 	token_init(mini, line, &exp);
 	while (!ft_isspace(line[exp.j]) && line[exp.j])
 	{
-		// TODO: Deal with pipes and redirections
-		return 0; // this is done for testing. 
+		if (line[exp.j] == '<' || line[exp.j] == '>' || line[exp.j] == '|')
+			return (treat_pipe_and_redirection(mini, line, &exp));
+		//TODO: deal with else case
 	}
 	return (exp.j);
 }
