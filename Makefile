@@ -1,6 +1,7 @@
 NAME = minishell
 SRCS = srcs/main.c srcs/signal.c utils/shlvl.c utils/init.c utils/token_num.c utils/ft_isspace.c \
-	   srcs/parse/parse.c srcs/parse/extract_token.c srcs/parse/get_tokens.c
+	   srcs/parse/parse.c srcs/parse/extract_token.c srcs/parse/get_tokens.c utils/ft_minishell_error.c \
+	   utils/ft_abs.c utils/ft_matrixlen.c
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
