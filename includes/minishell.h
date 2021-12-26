@@ -78,6 +78,7 @@ typedef struct s_mini
 	int		status;
 }				t_mini;
 
+extern t_mini	g_mini;
 
 /* UTILS */
 int		init(t_mini *mini, char **env);
@@ -94,8 +95,8 @@ void	sig_default(void);
 void	sig_ignore(void);
 
 /* PARSING */
-void	parse(t_mini *mini, char *line);
-void	get_tokens(t_mini *mini, char *line);
-int		extract_token(t_mini *mini, char *line);
+void	parse_and_execute(char *line);
+void	get_tokens(char *line);
+int		extract_token(char *line, char **token, char **quote);
 
 #endif

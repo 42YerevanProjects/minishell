@@ -1,13 +1,13 @@
 #include "../includes/minishell.h"
+t_mini g_mini;
 
 int main(int argc, char **argv, char **env)
 {
-	t_mini	mini;
 	char	*line;
 
 	(void) argc;
 	(void) argv;
-	init(&mini, env);
+	init(&g_mini, env);
 	sig_init();
 	while (1)
 	{
@@ -17,7 +17,7 @@ int main(int argc, char **argv, char **env)
 			ft_putstr_fd("minishell: exit 💚", STDERR);
 			return (0);
 		}
-		parse(&mini, line);
+		parse_and_execute(line);
 	}
 	return (0);
 }
