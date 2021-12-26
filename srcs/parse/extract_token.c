@@ -1,12 +1,21 @@
 #include "../../includes/minishell.h"
 
-//static int	treat_pipe_and_redirection(char *line, char **token, t_expansion *exp)
-//{
-//	if (exp->i != exp->j || (*token)[0] != '\0')
-//	{
-//		
-//	}
-//}
+static int	treat_pipe_and_redirection(char *line, char **token, t_expansion *exp)
+{
+	if (exp->i != exp->j || (*token)[0] != '\0')
+	{
+		ft_append_token(token, &line[exp->i], exp->j - exp->i, exp->expand);
+		return (exp->j);
+	}
+	else
+	{
+		if (!ft_strncmp(&line[exp->j], "<<", 2) || !ft_strncmp(&line[exp->j],
+				">>", 2))
+			exp->j++;
+		ft_append_token(token, &line[exp->i], exp->j - exp->i + 1, exp->expand);
+		return (exp->j + 1);
+	}
+}
 
 static void	token_init(char *line, char **token, char **quote, t_expansion *exp)
 {
@@ -38,8 +47,8 @@ int	extract_token(char *line, char **token, char **quote)
 	token_init(line, token, quote, &exp);
 	while (!ft_isspace(line[exp.j]) && line[exp.j])
 	{
-//		if (line[exp.j] == '<' || line[exp.j] == '>' || line[exp.j] == '|')
-//			return (treat_pipe_and_redirection(line, token, &exp));
+		if (line[exp.j] == '<' || line[exp.j] == '>' || line[exp.j] == '|')
+			return (treat_pipe_and_redirection(line, token, &exp));
 		return 0;		
 	}
 	return (exp.j);
