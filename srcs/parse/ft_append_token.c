@@ -28,25 +28,25 @@ static int	ft_env_var_len(char *line)
 
 static int	ft_treat_dollar_sign(t_refine *r, char *line)
 {
-	int		env_var_len;								// stores the length of the env variable
-	char	*env;										// stores the name of the env variable
+	int		env_var_len;					// stores the length of the env variable
+	char	*env;							// stores the name of the env variable
 
 	env_var_len = ft_env_var_len(r->ptr + 1);
 	/* If the variable name is valid */
 	if (env_var_len)
 	{
 		env = ft_substr(r->ptr, 1, env_var_len);		// extracts the variable name
-		r->val = ft_strdup(ft_getenv(env));				// gets the env variable value
+		r->val = ft_strdup(ft_getenv(env));			// gets the env variable value
 		free(env);									
-		r->prefix = ft_substr(line, 0, r->ptr - line);	// stores everything before the expanded part
+		r->prefix = ft_substr(line, 0, r->ptr - line);		// stores everything before the expanded part
 		r->postfix = ft_strdup(r->ptr + env_var_len + 1);	// stores everything after the expanded part
 	}
 	/* If the expansion is "$?" */
 	else if (*(r->ptr + 1) == '?')
 	{
-		r->val = ft_itoa(g_mini.status);				// The value of expansion is the programm status
-		r->prefix = ft_substr(line, 0, r->ptr - line);	// stores everything before expanded part 
-		r->postfix = ft_strdup(r->ptr + 2);				// stores everything after the expanded part
+		r->val = ft_itoa(g_mini.status);			// The value of expansion is the programm status
+		r->prefix = ft_substr(line, 0, r->ptr - line);		// stores everything before expanded part 
+		r->postfix = ft_strdup(r->ptr + 2);			// stores everything after the expanded part
 	}
 	/* Else if the variable is not valid */
 	else
@@ -65,8 +65,8 @@ static int	ft_treat_dollar_sign(t_refine *r, char *line)
 
 static char	*ft_refine_line(char *line)
 {
-	int			cont;										// stores status of line after treating '$'
-	t_refine	r;											// refine struct to help deal with the process
+	int			cont;							// stores status of line after treating '$'
+	t_refine	r;								// refine struct to help deal with the process
 
 	if (!line)
 		return (NULL);
@@ -84,8 +84,8 @@ static char	*ft_refine_line(char *line)
 		else
 			r.ptr = ft_strjoin(r.prefix, r.postfix);
 		free(line);							
-		line = r.ptr;										// Update line with the expaned one
-		r.ptr += ft_strlen(r.prefix) + ft_strlen(r.val);	// Update the pointer 
+		line = r.ptr;								// Update line with the expaned one
+		r.ptr += ft_strlen(r.prefix) + ft_strlen(r.val);			// Update the pointer 
 		free(r.prefix);
 		free(r.postfix);
 		free(r.val);
