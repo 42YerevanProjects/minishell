@@ -1,11 +1,16 @@
 #include "../../includes/minishell.h"
 
+/**
+ * The function takes a line as an argument and tokenizes it.
+ * It also deals with expansions and memory allocations.
+ **/
+
 void	get_tokens(char *line)
 {
 	int			i;
-	int			num;
-	char		*token;
-	char		*quote;
+	int			num;									// var to store max # of tokens
+	char		*token;									// temp var to store a token
+	char		*quote;									// temp var to store a quoted token
 
 	i = 0;
 	num = token_num(line);
@@ -17,9 +22,10 @@ void	get_tokens(char *line)
 	}
 	else
 		return ;
+	/* Iterate over line and extracts tokens */
 	while (line[i])
 	{
-		i += extract_token(&line[i], &token, &quote);
-		break ; // this is done for testing
+		i += extract_token(&line[i], &token, &quote);	// extracts a token and returns index of next word
+		break ; 										// this is done for testing
 	}
 }
