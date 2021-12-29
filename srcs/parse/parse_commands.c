@@ -4,7 +4,7 @@
  * The function initializes input and output streams of each command accordingly.
  **/
 
-void	inint_io(void)
+static void	init_io(void)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ void	parse_commands(void)
 	{
 		ft_minishell_error("minishell: parse error near `|'");
 		g_data.status = PARSE_ERROR;
-		free(commands);
+		free(g_mini.commands);
 		return ;
 	}
 	init_io();
