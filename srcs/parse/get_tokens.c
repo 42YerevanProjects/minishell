@@ -9,7 +9,7 @@ static void	init_token_array(char *line)
 {
 	int	num;
 
-	num = token_num(line) + 1;
+	num = ft_token_num(line) + 1;
 	g_mini.tokens->size = 0;
 	g_mini.tokens->token_array = (char **)malloc(sizeof(char *) * num);
 	g_mini.tokens->quote_array = (char **)malloc(sizeof(char *) * num);
