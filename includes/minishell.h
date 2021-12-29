@@ -40,6 +40,7 @@ typedef struct s_token
 {
 	char	**token_array;
 	char	**quote_array;
+	int		size;
 }				t_token;
 
 /* For dealing with expansions */
