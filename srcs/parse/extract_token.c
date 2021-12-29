@@ -17,9 +17,9 @@ static int	treat_pipe_and_redirection(char *line, char **token, t_expansion *exp
 	{
 		if (!ft_strncmp(&line[exp->j], "<<", 2) || !ft_strncmp(&line[exp->j],
 				">>", 2))
-			exp->j += 2;
-		ft_append_token(token, &line[exp->i], exp->j - exp->i, exp->expand);
-		return (exp->j);
+			exp->j++;
+		ft_append_token(token, &line[exp->i], exp->j - exp->i + 1, exp->expand);
+		return (exp->j + 1);
 	}
 }
 
