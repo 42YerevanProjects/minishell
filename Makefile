@@ -1,8 +1,12 @@
 NAME = minishell
-SRCS = srcs/main.c srcs/signal.c utils/shlvl.c utils/init.c utils/token_num.c utils/ft_isspace.c \
-	   srcs/parse/parse_and_execute.c srcs/parse/extract_token.c srcs/parse/get_tokens.c \
-	   utils/ft_minishell_error.c utils/ft_abs.c utils/ft_matrixlen.c srcs/env/ft_getenv.c \
-	   srcs/env/ft_is_valid_identifier.c srcs/env/ft_separate_identifier.c srcs/parse/ft_append_token.c
+SRCS = srcs/main.c srcs/signal.c srcs/parse_and_execute.c srcs/parse/extract_token.c \
+	   srcs/parse/get_tokens.c srcs/env/ft_getenv.c srcs/env/ft_is_valid_identifier.c \
+	   srcs/env/ft_separate_identifier.c srcs/parse/ft_append_token.c srcs/parse/parse_commands.c \
+	   srcs/parse/extract_argument.c srcs/parse/check_pipe.c \
+	   utils/shlvl.c utils/init.c utils/ft_token_num.c utils/ft_isspace.c utils/ft_minishell_error.c \
+	   utils/ft_abs.c utils/ft_matrixlen.c utils/cleanup.c utils/ft_count_commands.c utils/ft_args_size.c \
+	   utils/ft_array_copy.c
+ 
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc

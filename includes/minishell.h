@@ -20,7 +20,7 @@
 
 # define SUCCESS 0
 # define ERROR 1
-# define PARSE_ERROR 2
+# define SYNTAX_ERROR 258
 # define DIRECTORY 126
 # define UNKNOWN_COMMAND 127
 
@@ -82,12 +82,16 @@ typedef struct s_mini
 extern t_mini	g_mini;
 
 /* UTILS */
-void	increment_shell_level(t_env *env);
 int		ft_count_commands(char **token_array);
+void	increment_shell_level(t_env *env);
+void	ft_free_commands(t_cmd *commands);
+void	ft_free_matrix(char **matrix);
 int		init(t_mini *mini, char **env);
 int		ft_minishell_error(char *msg);
 int		ft_matrixlen(char **matrix);
+char	**ft_array_copy(char **args);
 int		ft_token_num(char *line);
+int		ft_args_size(int index);
 int		ft_isspace(char c);
 int		ft_abs(int nb);
 
@@ -105,7 +109,10 @@ void	sig_ignore(void);
 void	parse_and_execute(char *line);
 void	get_tokens(char *line);
 int		extract_token(char *line, char **token, char **quote);
+int		extract_argument(t_cmd *cmd, int *index);
 void	ft_append_token(char **token, char *line, int len, int expand);
-void	pasrse_commands(void);
+void	parse_commands(void);
+int		check_pipe(char **args, int *index);
+
 
 #endif
