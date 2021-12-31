@@ -21,7 +21,6 @@
 # define SUCCESS 0
 # define ERROR 1
 # define SYNTAX_ERROR 258
-# define DIRECTORY 126
 # define UNKNOWN_COMMAND 127
 
 
@@ -83,22 +82,29 @@ extern t_mini	g_mini;
 
 /* UTILS */
 int		ft_count_commands(char **token_array);
-void	increment_shell_level(t_env *env);
 void	ft_free_commands(t_cmd *commands);
+void	ft_free_tokens(t_token *tokens);
 void	ft_free_matrix(char **matrix);
 int		init(t_mini *mini, char **env);
 int		ft_minishell_error(char *msg);
 int		ft_matrixlen(char **matrix);
-char	**ft_array_copy(char **args);
 int		ft_token_num(char *line);
 int		ft_args_size(int index);
+int		ft_isnum(char *num);
 int		ft_isspace(char c);
 int		ft_abs(int nb);
 
 /* ENV UTILS */
-char	*ft_getenv(char *var);
-char	*ft_separate_identifier(char *var);
+t_env	*new_node(char *value, t_env *next);
+void	increment_shell_level(t_env *env);
 int		ft_is_valid_identifier(char *var);
+int		ft_is_valid_declaration(char *decl);
+char	*ft_separate_identifier(char *var);
+void	ft_remove_from_env(char *var);
+int		ft_env_contains(char *var);
+void	ft_add_to_env(char *var);
+char	*ft_getenv(char *var);
+void	ft_print_env(int fd);
 
 /* SIGNALS */
 void	sig_init(void);
@@ -114,5 +120,13 @@ void	ft_append_token(char **token, char *line, int len, int expand);
 void	parse_commands(void);
 int		check_pipe(char **args, int *index);
 
+/* BUILTINS  */
+int		ft_echo(t_cmd *cmd);
+int		ft_cd(t_cmd *cmd);
+int		ft_pwd(t_cmd *cmd);
+int		ft_export(t_cmd *cmd);
+int		ft_unset(t_cmd *cmd);
+int		ft_env(t_cmd *cmd);
+void	ft_exit(t_cmd *cmd);
 
 #endif
