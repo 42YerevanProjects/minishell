@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-static t_env *new_node(char *value, t_env *next)
+t_env *new_node(char *value, t_env *next)
 {
 	t_env *new;
 
