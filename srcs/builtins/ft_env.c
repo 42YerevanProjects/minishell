@@ -12,7 +12,7 @@ int	ft_env(t_cmd *cmd)
 	head = g_mini.env;
 	if (ft_matrixlen(cmd->args) > 1)
 	{
-		ft_minishell_error("minishell: env: invalid number of args to env");
+		ft_minishell_error("minishell: env: Too many args to env");
 		return (1);
 	}
 	while (head)
