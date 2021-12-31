@@ -9,7 +9,7 @@ int	ft_pwd(t_cmd *cmd)
 {
 	if (ft_matrixlen(cmd->args) > 1)
 	{
-		ft_minishell_errror("minishell: pwd: Invalid number of args to pwd");
+		ft_minishell_errror("minishell: pwd: Too many args to pwd");
 		return (1);
 	}
 	ft_putstr_fd(ft_getenv("PWD"), cmd->out);
