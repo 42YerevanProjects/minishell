@@ -36,3 +36,15 @@ void	ft_free_commands(t_cmd *cmds)
 		cmds = NULL;
 	}
 }
+
+void	ft_free_tokens(t_token *tokens)
+{
+	if (tokens)
+	{
+		if (tokens->token_array)
+			ft_free_matrix(tokens->token_array);
+		if (tokens->quote_array)
+			ft_free_matrix(tokens->quote_array);
+		free(tokens);
+	}
+}
