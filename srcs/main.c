@@ -15,10 +15,13 @@ int main(int argc, char **argv, char **env)
 		if (!line)
 		{
 			ft_putstr_fd("minishell: exit 💚", STDERR);
-			return (0);
+			return (SUCCESS);
 		}
 		parse_and_execute(line);
+		if (ft_strcmp(line, ""))
+			add_history(line);
+		free(line);
 	}
-	return (0);
+	return (SUCCESS);
 }
 
