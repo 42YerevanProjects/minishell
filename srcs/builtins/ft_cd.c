@@ -1,9 +1,44 @@
 #include "../../includes/minishell.h"
 
+/**
+ * The function updates the OLDPWD and PWD environment variables
+ * after changing the directory. Returns 0 on success, 1 otherwise.
+ **/
+
 static int	update_env_wds(t_mini *mini, char *oldpwd, int status)
 {
-	//TODO: Update PWD and OLDPWD after doing export
+	char	*pwd;
+
+	/* If status is 1 (smth wrong happened) */
+	if (status)
+	{
+		free(oldpwd);
+		return (ft_minishell_error("minishell: cd: No such file or directory"));
+	}
+	/* Get the current PWD and export it by updating the old one */
+	pwd = getcwd(NULL, 0);
+	export.args = ft_calloc(3, sizeof(char *));
+	export.args[0] = ft_strdup("");
+	export.args[1] = ft_strjoin("PWD=", pwd);
+	ft_export(&export);
+	/* Free the memory used */
+	ft_free_matrix(export.args);
+	free(pwd);
+	/* Construct export for the OLDPWD and export it by updating the old one */
+	export.args = ft_calloc(3, sizeof(char *));
+	export.args[0] = ft_strdup("");
+	export.args[1] = ft_strjoin("OLDPWD=", oldpwd);
+	ft_export(&export);
+	/* Free the memory used */
+	ft_freematrix(export.args);
+	free(oldpwd);
+	return (status);
 }
+
+/**
+ * THe function changes the directory from minishell. Returns 0
+ * on success, 1 otherwise.
+ **/
 
 static int	ft_change_dir(t_cmd *cmd, int *status, char *oldpwd)
 {
@@ -31,6 +66,13 @@ static int	ft_change_dir(t_cmd *cmd, int *status, char *oldpwd)
 	return (0);
 }
 
+/**
+ * The function mimics the behavior of the command cd in bash. It 
+ * changes the directory and updates the OLDPWD and PWD
+ * fields of the environment properly. Returns 0, on success, 1
+ * otherwise.
+ **/
+
 int	ft_cd(t_mini *mini, t_cmd *cmd)
 {
 	int		status;
@@ -38,13 +80,13 @@ int	ft_cd(t_mini *mini, t_cmd *cmd)
 
 	status = 1;
 	oldpwd = getcwd(NULL, 0);
-	/* if getcwd returned NULL for some reason */
+	/* If getcwd returned NULL for some reason */
 	if (!oldpwd)
 	{
 		perror("cd: could not retrive current directory");
 		return (0);
 	}
-	/* if the command is just "cd" => go to $HOME */
+	/* If the command is just "cd" => go to $HOME */
 	if (ft_matrixlen(cmd->args) == 1)
 	{
 		if (ft_getenv("HOME"))
@@ -55,13 +97,13 @@ int	ft_cd(t_mini *mini, t_cmd *cmd)
 			return (ft_minishell_error("cd: HOME is not set");
 		}
 	}
-	/* perform the change of the directory */
+	/* Perform the change of the directory */
 	else
 	{
 		if (ft_change_path(cmd, &status, oldpwd))
 			return (1);
 	}
-	/* update PWD and OLDPWD environment variables */
+	/* Update PWD and OLDPWD environment variables */
 	return (update_env_wds(mini, oldpwd, status));
 }
 
