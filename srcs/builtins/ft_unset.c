@@ -24,9 +24,9 @@ static int	ft_unset_variable(t_cmd *cmd)
 	i = 1;
 	while (cmd->args[i])
 	{
-		if (!ft_isvalididentifier(cmd->args[i]))
+		if (!ft_is_valid_identifier(cmd->args[i]))
 		{
-			unset_error(cmd->arg[i++]);
+			unset_error(cmd->args[i++]);
 			status = 1;
 			continue ;
 		}
