@@ -1,9 +1,7 @@
 NAME = minishell
-SRCS =  $(wildcard srcs/*.c) \
-		$(wildcard srcs/parse/*.c) \
-		$(wildcard srcs/env/*.c) \
-		$(wildcard srcs/builtin/*.c) \
-		$(wildcard utils/*.c) 
+SRCS =  $(wildcard srcs/*.c) $(wildcard srcs/parse/*.c) \
+		$(wildcard srcs/env/*.c) $(wildcard utils/*.c) \
+		$(wildcard srcs/builtins/*.c)
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
