@@ -52,6 +52,8 @@ static int	ft_treat_dollar_sign(t_refine *r, char *line)
 	else
 	{
 		r->ptr++;
+		/* Added this line to prevent segfault */
+		r->ptr = ft_strchr(r->ptr, '$');						// find the next occurance of '$'
 		return (1);
 	}
 	return (0);
@@ -70,13 +72,14 @@ static char	*ft_refine_line(char *line)
 
 	if (!line)
 		return (NULL);
-	r.ptr = ft_strchr(line, '$');							// get the first refference of '$'
+	r.ptr = ft_strchr(line, '$');				// get the first refference of '$'
 	/*	Traverse over the line and expand */
 	while (r.ptr && *r.ptr)
 	{
+		/* Getting segfault here */
 		cont = ft_treat_dollar_sign(&r, line);
 		if (cont)
-			continue ;
+			continue ; 
 		/* If environment variable value is found insert it in line */
 		if (r.val)
 			r.ptr = ft_strjoin3(r.prefix, r.val, r.postfix);
