@@ -33,18 +33,27 @@ void	ft_free_commands(t_cmd *cmds)
 			i++;
 		}
 		free(cmds);
-		cmds = NULL;
+		g_mini.commands = NULL;
 	}
 }
 
-void	ft_free_tokens(t_token *tokens)
+void	ft_free_tokens(void)
 {
-	if (tokens)
+	if (g_mini.tokens)
 	{
-		if (tokens->token_array)
-			ft_free_matrix(tokens->token_array);
-		if (tokens->quote_array)
-			ft_free_matrix(tokens->quote_array);
-		free(tokens);
+		if (g_mini.tokens->token_array)
+			ft_free_matrix(g_mini.tokens->token_array);
+		if (g_mini.tokens->quote_array)
+			ft_free_matrix(g_mini.tokens->quote_array);
+		free(g_mini.tokens);
+	}
+}
+
+void	ft_free_fam(void)
+{
+	if (g_mini.fam)
+	{
+		free(g_mini.fam);
+		g_mini.fam = NULL;
 	}
 }
