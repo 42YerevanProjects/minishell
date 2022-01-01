@@ -73,7 +73,7 @@ static char	*ft_refine_line(char *line)
 	if (!line)
 		return (NULL);
 	r.ptr = ft_strchr(line, '$');				// get the first refference of '$'
-	/*	Traverse over the line and expand */
+	/* Traverse over the line and expand */
 	while (r.ptr && *r.ptr)
 	{
 		/* Getting segfault here */
