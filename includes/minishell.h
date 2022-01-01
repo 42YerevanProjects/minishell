@@ -94,6 +94,7 @@ void	ft_free_commands(t_cmd *cmds);
 void	ft_free_matrix(char **matrix);
 int     ft_convert_builtin(char *builtin);
 int		init(t_mini *mini, char **env);
+char	**ft_array_copy(char **args);
 int		ft_minishell_error(char *msg);
 int		ft_matrixlen(char **matrix);
 t_cmd	*ft_find_command(pid_t pid);
