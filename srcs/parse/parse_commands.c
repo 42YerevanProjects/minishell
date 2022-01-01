@@ -78,7 +78,7 @@ void	parse_commands(void)
 	{
 		ft_minishell_error("minishell: syntax error near `|'");
 		g_mini.status = SYNTAX_ERROR;
-		free(g_mini.commands);
+		ft_free_commands(g_mini.commands);
 		return ;
 	}
 	/* Initializing I/O streams and args */
