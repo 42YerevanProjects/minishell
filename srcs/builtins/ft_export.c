@@ -17,7 +17,7 @@ static void	export_error(char *var, int *status)
  * handles the errors encountered.
  **/
 
-static void	ft_export_variabl(t_cmd *cmd, int *ret)
+static void	ft_export_variable(t_cmd *cmd, int *status)
 {
 	int	i;
 
