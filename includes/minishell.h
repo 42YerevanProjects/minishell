@@ -18,6 +18,14 @@
 # define STDOUT 1
 # define STDERR 2
 
+# define _ECHO 1
+# define _CD 2
+# define _PWD 3
+# define _EXPORT 4
+# define _UNSET 5
+# define _ENV 6
+# define _EXIT 7
+
 # define SUCCESS 0
 # define ERROR 1
 # define SYNTAX_ERROR 258
@@ -85,6 +93,7 @@ int		ft_count_commands(char **token_array);
 void	ft_free_commands(t_cmd *commands);
 void	ft_free_tokens(t_token *tokens);
 void	ft_free_matrix(char **matrix);
+int     ft_convert_builtin(char *builtin)
 int		init(t_mini *mini, char **env);
 int		ft_minishell_error(char *msg);
 int		ft_matrixlen(char **matrix);
