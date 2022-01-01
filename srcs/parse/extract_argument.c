@@ -122,9 +122,9 @@ int	extract_argument(t_cmd *cmd, int *index)
 		return (1);
 	/* If arry of arguments is not empty add it to the appropriate field in cmd */
 	if (ft_matrixlen(args) > 0)
-	{
-		args[p] = NULL;	// NULL termination
-		cmd->args = args;
+	{	
+		cmd->args = ft_array_copy(args);
+		ft_free_matrix(args);
 	}
 	return (0);
 }
