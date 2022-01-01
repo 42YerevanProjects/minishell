@@ -18,6 +18,7 @@ int	ft_env(t_cmd *cmd)
 	while (head)
 	{
 		ft_putstr_fd(head->value, cmd->out);
+		ft_putstr_fd("\n", cmd->out);
 		head = head->next;
 	}
 	return (0);
