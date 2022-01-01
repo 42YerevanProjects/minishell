@@ -1,22 +1,29 @@
 #include "../includes/minishell.h"
 
+/**
+ * The function updates the status accordingly for each process.
+ **/
 
-static int	ft_update_status(int terminated, int returned)
+static int	ft_update_status(int terminated, int wstatus)
 {
 	int		signaled;
 	t_cmd	*selected;
 
 	signaled = 0;
+	/* If the terminated process is the last one */
 	if (terminated == g_mini.fam[g_mini.cmd_count - 1])
 	{
-		if (!WTERMSIG(returned))
-			g_mini.status = WEXITSTATUS(returned);
+		/* If there is no termination signal, then take the status */
+		if (!WTERMSIG(wstatus))
+			g_mini.status = WEXITSTATUS(wstatus);
+		/* Else if there is signal, update status */
 		else
 		{
 			signaled = 1;
-			g_mini.status = WTERMSIG(returned) + 128;
+			g_mini.status = WTERMSIG(wstatus) + 128;
 		}
 	}
+	/* Find the terminated command, and close related files */
 	selected = ft_find_command(terminated);
 	if (selected)
 	{
@@ -28,24 +35,33 @@ static int	ft_update_status(int terminated, int returned)
 	return (signaled);
 }
 
+/**
+ * The function stops the main process until the child processes return.
+ **/
+
 static void	block_main_process(void)
 {
-	int		i;
-	int		returned;
-	int		signaled;
+	int	i;
+	int	wstatus;
+	int	signaled;
 
-	signaled = 0;
+	/* No signals at first */
 	i = 0;
+	signaled = 0;
+	/* Wait for each command and update status accordingly */
 	while (i < g_mini.cmd_count)
 	{
-		signaled += ft_update_status(wait(&returned), returned);
+		signaled += ft_update_status(wait(&wstatus), wstatus);
 		i++;
 	}
+	/* If a process signaled, check the status */
 	if (signaled)
 	{
+		/* If the process status is not recoverable */
 		if (g_mini.status == 131)
-			ft_putstr_fd("Quit: 3", 1);
-		ft_putstr_fd("\n", 1);
+			ft_putstr_fd("Quit: 3", STDOUT);
+		/* Else output a new line */
+		ft_putstr_fd("\n", STDOUT);
 	}
 }
 
