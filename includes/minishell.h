@@ -90,17 +90,19 @@ extern t_mini	g_mini;
 
 /* UTILS */
 int		ft_count_commands(char **token_array);
-void	ft_free_commands(t_cmd *commands);
-void	ft_free_tokens(t_token *tokens);
+void	ft_free_commands(t_cmd *cmds);
 void	ft_free_matrix(char **matrix);
-int     ft_convert_builtin(char *builtin)
+int     ft_convert_builtin(char *builtin);
 int		init(t_mini *mini, char **env);
 int		ft_minishell_error(char *msg);
 int		ft_matrixlen(char **matrix);
+t_cmd	*ft_find_command(pid_t pid);
 int		ft_token_num(char *line);
 int		ft_args_size(int index);
+void	ft_free_tokens(void);
 int		ft_isnum(char *num);
 int		ft_isspace(char c);
+void	ft_free_fam(void);
 int		ft_abs(int nb);
 
 /* ENV UTILS */
@@ -109,6 +111,7 @@ void	increment_shell_level(t_env *env);
 int		ft_is_valid_identifier(char *var);
 int		ft_is_valid_declaration(char *decl);
 char	*ft_separate_identifier(char *var);
+char	**ft_env_to_array(t_env *enc);
 void	ft_remove_from_env(char *var);
 int		ft_env_contains(char *var);
 void	ft_add_to_env(char *var);
@@ -137,5 +140,8 @@ int		ft_export(t_cmd *cmd);
 int		ft_unset(t_cmd *cmd);
 int		ft_env(t_cmd *cmd);
 void	ft_exit(t_cmd *cmd);
+
+/* EXECUTING */
+void	ft_exec(t_cmd *cmd);
 
 #endif
