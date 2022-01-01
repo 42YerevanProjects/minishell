@@ -55,7 +55,7 @@ void	ft_exit(t_cmd *cmd)
 			exit_code = ft_atoi(cmd->args[1]);
 		/* Else there are more than one numbers */
 		else
-			g_data.status = ft_minishell_error("minishell: exit: too many arguments");
+			g_mini.status = ft_minishell_error("minishell: exit: too many arguments");
 	}
 	/* Terminating the process who called exit */
 	terminate(exit_code);
