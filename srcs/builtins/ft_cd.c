@@ -5,10 +5,10 @@
  * after changing the directory. Returns 0 on success, 1 otherwise.
  **/
 
-static int	update_env_wds(t_mini *mini, char *oldpwd, int status)
+static int	update_env_wds(char *oldpwd, int status)
 {
 	char	*pwd;
-
+	t_cmd	export;
 	/* If status is 1 (smth wrong happened) */
 	if (status)
 	{
@@ -30,7 +30,7 @@ static int	update_env_wds(t_mini *mini, char *oldpwd, int status)
 	export.args[1] = ft_strjoin("OLDPWD=", oldpwd);
 	ft_export(&export);
 	/* Free the memory used */
-	ft_freematrix(export.args);
+	ft_free_matrix(export.args);
 	free(oldpwd);
 	return (status);
 }
@@ -73,7 +73,7 @@ static int	ft_change_dir(t_cmd *cmd, int *status, char *oldpwd)
  * otherwise.
  **/
 
-int	ft_cd(t_mini *mini, t_cmd *cmd)
+int	ft_cd(t_cmd *cmd)
 {
 	int		status;
 	char	*oldpwd;
@@ -94,16 +94,16 @@ int	ft_cd(t_mini *mini, t_cmd *cmd)
 		else
 		{
 			free(oldpwd);
-			return (ft_minishell_error("cd: HOME is not set");
+			return (ft_minishell_error("cd: HOME is not set"));
 		}
 	}
 	/* Perform the change of the directory */
 	else
 	{
-		if (ft_change_path(cmd, &status, oldpwd))
+		if (ft_change_dir(cmd, &status, oldpwd))
 			return (1);
 	}
 	/* Update PWD and OLDPWD environment variables */
-	return (update_env_wds(mini, oldpwd, status));
+	return (update_env_wds(oldpwd, status));
 }
 
