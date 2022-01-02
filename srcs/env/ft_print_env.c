@@ -14,7 +14,8 @@ void	ft_print_env(int fd)
 	while (head)
 	{
 		i = 0;
-		while (head->value[i] != '=')
+		ft_putstr_fd("declare -x ", fd);
+		while (head->value[i] && head->value[i] != '=')
 			ft_putchar_fd(head->value[i++], fd);
 		ft_putstr_fd("=\"", fd);
 		i++;
