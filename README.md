@@ -56,7 +56,6 @@ __libft:__
 
 __srcs:__
 	This folder contains the main functions of the project.
-
 	`main.c:` The main function of the project.
 	`signal.c:` The functions used for signal handling.
 	`execute.c:` The file that contains the ft_exec function. 
