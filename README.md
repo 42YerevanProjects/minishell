@@ -75,20 +75,17 @@ To use this project you need to clone this repository, by running the following 
 
 ```
 git clone https://github.com/42YerevanProjects/42_minishell.git
-
 ```
 Then you should go to the cloned repo and run the make command
 
 ```
 cd 42_minishell
 make
-
 ```
 After that you will see the executable minishell. Lastly you should run the executable
 
 ```
 ./minishell
-
 ```
 You will be provided witha prompt and can use it as a shell.
 
