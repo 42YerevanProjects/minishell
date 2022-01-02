@@ -120,7 +120,10 @@ void	parse_and_execute(char *line)
 	get_tokens(line);
 	/* If there are no tokens at all; do nothing */
 	if (!g_mini.tokens->token_array || !g_mini.tokens->token_array[0])
+	{
+		ft_free_tokens();
 		return ;
+	}
 	/* Initializing the commands field in g_mini */
 	parse_commands();
 	/* If there are no commands */
