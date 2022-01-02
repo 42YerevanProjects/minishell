@@ -6,7 +6,7 @@ to communicate with a computer using interactive lines of commands in a language
 objective of this project is to create a simple shell in C.
 
 This project is a 42 school's duo project. The core achievement of the project was that it helped us  get to the core
-of the Unix system and explore an important part of this system’s API: process creation, input pasring and 
+of the Unix system and explore an important part of this system’s API: process creation, input parsing and 
 synchronisation.
 
 ## Introduction to the project
