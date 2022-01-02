@@ -119,7 +119,7 @@ void	parse_and_execute(char *line)
 	/* Initializes the tokens of struct g_mini */
 	get_tokens(line);
 	/* If there are no tokens at all; do nothing */
-	if (!g_mini.tokens->token_array[0])
+	if (!g_mini.tokens->token_array || !g_mini.tokens->token_array[0])
 		return ;
 	/* Initializing the commands field in g_mini */
 	parse_commands();
