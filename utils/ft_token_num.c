@@ -4,11 +4,18 @@ int	ft_token_num(char *line)
 {
 	char	**tokens;
 	int		i;
+	int		len;
 
-	tokens = ft_split(line, ' ');
 	i = 0;
+	len = 0;
+	tokens = ft_split(line, ' ');
 	while (tokens[i])
+	{
+		if (tokens[i][0] == '|' || tokens[i][0] == '<' || tokens[i][0] == '>')
+			len++;
+		len++;
 		i++;
-	free(tokens);
-	return (i);
+	}
+	ft_free_matrix(tokens);
+	return (len);
 }
