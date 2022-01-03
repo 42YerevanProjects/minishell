@@ -35,7 +35,7 @@ static int	ft_treat_dollar_sign(t_refine *r, char *line)
 	/* If the variable name is valid */
 	if (env_var_len)
 	{
-		env = ft_substr(r->ptr, 1, env_var_len);		// extracts the variable name
+		env = ft_substr(r->ptr, 1, env_var_len);	// extracts the variable name
 		r->val = ft_strdup(ft_getenv(env));			// gets the env variable value
 		free(env);									
 		r->prefix = ft_substr(line, 0, r->ptr - line);		// stores everything before the expanded part
@@ -67,7 +67,6 @@ static int	ft_treat_dollar_sign(t_refine *r, char *line)
 
 static char	*ft_refine_line(char *line)
 {
-	int			cont;							// stores status of line after treating '$'
 	t_refine	r;								// refine struct to help deal with the process
 
 	if (!line)
@@ -76,9 +75,8 @@ static char	*ft_refine_line(char *line)
 	/* Traverse over the line and expand */
 	while (r.ptr && *r.ptr)
 	{
-		/* Getting segfault here */
-		cont = ft_treat_dollar_sign(&r, line);
-		if (cont)
+		/* Treating dollar sign */
+		if (ft_treat_dollar_sign(&r, line))
 			continue ; 
 		/* If environment variable value is found insert it in line */
 		if (r.val)
