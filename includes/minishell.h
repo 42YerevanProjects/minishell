@@ -74,7 +74,17 @@ typedef struct s_refine
 	char		*val;
 }				t_refine;
 
-/* TODO: Woking with heredocs */
+/* A struct that helps to store and work heredoc information */
+typedef struct	s_heredoc
+{
+	int		j;
+	int		heredocs;
+	int		h_pid;
+	int		h_status;
+	int		*w_ends;
+	int		refined;
+	char	*heredoc;
+}				t_heredoc;
 
 typedef struct s_mini
 {
@@ -123,6 +133,7 @@ void	ft_print_env(int fd);
 void	sig_init(void);
 void	sig_default(void);
 void	sig_ignore(void);
+void	sig_heredoc(void);
 
 /* PARSING */
 void	parse_and_execute(char *line);
@@ -132,6 +143,11 @@ int		extract_argument(t_cmd *cmd, int *index);
 void	ft_append_token(char **token, char *line, int len, int expand);
 void	parse_commands(void);
 int		check_pipe(char **args, int *index);
+char	*ft_refine_line(char *line);
+
+/* HEREDOC */
+int		launch_heredoc(void);
+void	process_heredoc(t_heredoc *h_info);
 
 /* BUILTINS  */
 int		ft_echo(t_cmd *cmd);
