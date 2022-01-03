@@ -3,6 +3,7 @@ SRCS = $(wildcard srcs/*.c) \
 	   $(wildcard srcs/builtins/*.c) \
 	   $(wildcard srcs/parse/*.c) \
 	   $(wildcard srcs/env/*.c) \
+	   $(wildcard srcs/heredoc/*.c) \
 	   $(wildcard utils/*.c)
 OBJS = ${SRCS:.c=.o}
 
