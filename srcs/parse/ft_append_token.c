@@ -38,7 +38,7 @@ static int	ft_treat_dollar_sign(t_refine *r, char *line)
 		env = ft_substr(r->ptr, 1, env_var_len);	// extracts the variable name
 		r->val = ft_strdup(ft_getenv(env));			// gets the env variable value
 		free(env);									
-		r->prefix = ft_substr(line, 0, r->ptr - line);		// stores everything before the expanded part
+		r->prefix = ft_substr(line, 0, r->ptr - line );		// stores everything before the expanded part
 		r->postfix = ft_strdup(r->ptr + env_var_len + 1);	// stores everything after the expanded part
 	}
 	/* If the expansion is "$?" */
@@ -52,7 +52,6 @@ static int	ft_treat_dollar_sign(t_refine *r, char *line)
 	else
 	{
 		r->ptr++;
-		/* Added this line to prevent segfault */
 		r->ptr = ft_strchr(r->ptr, '$');						// find the next occurance of '$'
 		return (1);
 	}
@@ -107,6 +106,10 @@ void	ft_append_token(char **token, char *line, int len, int expand)
 
 	str = ft_substr(line, 0, len);
 	if (expand)
+	{
 		str = ft_refine_line(str);
+		if (!ft_strcmp(str, "$"))
+			return ;
+	}
 	*token = ft_strjoin(*token, str);
 }
