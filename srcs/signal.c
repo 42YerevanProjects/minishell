@@ -31,14 +31,14 @@ static void	sigquit(int sig)
 	rl_redisplay();
 }
 
-//static void	interrupt(int sig)
-//{
-//	(void)sig;
-//	suppress_output();
-//	rl_on_new_line();
-//	rl_redisplay();
-//	exit(1);
-//}
+static void	interrupt(int sig)
+{
+	(void)sig;
+	suppress_output();
+	rl_on_new_line();
+	rl_redisplay();
+	exit(1);
+}
 
 /* SIGNAL FUNCTIONS */
 
@@ -60,3 +60,8 @@ void	sig_ignore(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
+void	sig_heredoc(void)
+{
+	signal(SIGINT, interrupt);
+	signal(SIGQUIT, sigquit);
+}
