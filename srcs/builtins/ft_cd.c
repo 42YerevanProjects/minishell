@@ -79,7 +79,12 @@ int	ft_cd(t_cmd *cmd)
 	char	*oldpwd;
 
 	status = 1;
-	oldpwd = getcwd(NULL, 0);
+	/* No matter where you are, absolute paths should work */
+	if (!cmd->args[1] || cmd->args[1][0] == '/' || cmd->args[1][0] == '-')
+		oldpwd = ft_strdup(ft_getenv("PWD"));
+	/* else if it is not an absolute path */
+	else
+		oldpwd = getcwd(NULL, 0);
 	/* If getcwd returned NULL for some reason */
 	if (!oldpwd)
 	{
