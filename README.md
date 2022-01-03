@@ -87,11 +87,11 @@ After that you will see the executable minishell. Lastly you should run the exec
 ```
 ./minishell
 ```
-You will be provided witha prompt and can use it as a shell.
+You will be provided with a prompt and can use it as a shell.
 
 ## Credits
 
-I got help from a 42 school student [aisraely](https://github.com/Mampacuk). He explained me the logic of the code and helped to test it.
+WE got help from a 42 school student [aisraely](https://github.com/Mampacuk). He explained us the logic of the code and helped to test it.
 
 ## Additional info
 
