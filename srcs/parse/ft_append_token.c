@@ -64,7 +64,7 @@ static int	ft_treat_dollar_sign(t_refine *r, char *line)
  * positions. The function returns the refined line.
  **/
 
-static char	*ft_refine_line(char *line)
+char	*ft_refine_line(char *line)
 {
 	t_refine	r;								// refine struct to help deal with the process
 
