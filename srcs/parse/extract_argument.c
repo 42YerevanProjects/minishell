@@ -1,6 +1,40 @@
 #include "../../includes/minishell.h"
 
 /**
+ * The function treats heredocs by checking for errors and initializing
+ * appropritae arrays of the cmd struct. Returns 0 on success, 1 otherwise.
+ **/
+
+static int	treat_heredoc(t_cmd *cmd, int *index)
+{
+	char	*token;
+	char	*err;
+
+	*index = *index + 1;
+	token = g_mini.tokens->token_array[*index];
+	/* If the here doc sign is followed with error prone tokens */
+	if (token == NULL || (token[0] == '|' && token[1] == '\0')
+			|| !ft_strcmp(token, "<<"))
+	{
+		if (token == NULL)
+			err = "syntax error near unexpected token `newline'";
+		else
+			err = ft_strjoin3("syntax error near unexpected token `", token, "'");
+		ft_minishell_error(ft_strjoin("minishell: ", err));
+		g_mini.status = SYNTAX_ERROR;
+		return (1);
+	}
+	/* Allocate memory for heredoc and refine arrays */
+	if (!cmd->heredoc)
+		cmd->heredoc = ft_calloc(10000, sizeof(char *));
+	cmd->heredoc[0] = ft_strdup(token);
+	if (!cmd->refine)
+		cmd->refine = ft_calloc(10000, sizeof(char *));
+	cmd->refine[0] = ft_strdup(g_mini.tokens->quote_array[*index]);
+	return (0);
+}
+
+/**
  * The function check for valid input with redirections. It check 
  * whether </>>/> is the last token in the command OR encountered an
  * unquoted redireciton operator after another one.
@@ -71,10 +105,9 @@ static int	treat_token(t_cmd *cmd, char ***args, int *index, int *p)
 
 	err = 0;
 	token = g_mini.tokens->token_array[*index];
-//	TODO: Add the heredoc case
-//	if (!ft_strcmp( "<<"))
-//		err = treat_heredoc(cmd, index);
-	if (!ft_strcmp(token, ">"))
+	if (!ft_strcmp(token, "<<"))
+		err = treat_heredoc(cmd, index);
+	else if (!ft_strcmp(token, ">"))
 		err = treat_redirection(&(cmd->out), index, O_TRUNC | O_WRONLY | O_CREAT);
 	else if (!ft_strcmp(token, ">>"))
 		err = treat_redirection(&(cmd->out), index, O_APPEND | O_WRONLY | O_CREAT);
