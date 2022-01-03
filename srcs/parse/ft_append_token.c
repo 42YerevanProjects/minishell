@@ -110,6 +110,10 @@ void	ft_append_token(char **token, char *line, int len, int expand)
 		str = ft_refine_line(str);
 		if (!ft_strcmp(str, "$"))
 			return ;
+		else if (str[0] == '$')
+			str = ft_substr(str, 1, ft_strlen(str));
+		else if (str[ft_strlen(str) - 1] == '$')
+			str = ft_substr(str, 0, ft_strlen(str) - 1);
 	}
 	*token = ft_strjoin(*token, str);
 }
