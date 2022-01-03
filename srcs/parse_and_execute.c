@@ -59,7 +59,7 @@ static void	block_main_process(void)
 	{
 		/* If the process status is not recoverable */
 		if (g_mini.status == 131)
-			ft_putstr_fd("Quit: 3", STDOUT);
+			ft_putstr_fd("Quit", STDOUT);
 		/* Else output a new line */
 		ft_putstr_fd("\n", STDOUT);
 	}
@@ -127,7 +127,7 @@ void	parse_and_execute(char *line)
 	/* Initializing the commands field in g_mini */
 	parse_commands();
 	/* If there are no commands */
-	if (!g_mini.commands)
+	if (!g_mini.commands || launch_heredoc())
 	{
 		ft_free_tokens();
 		return ;
