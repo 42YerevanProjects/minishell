@@ -26,11 +26,11 @@ static int	treat_heredoc(t_cmd *cmd, int *index)
 	}
 	/* Allocate memory for heredoc and refine arrays */
 	if (!cmd->heredoc)
-		cmd->heredoc = ft_calloc(1000, sizeof(char *));
-	cmd->heredoc[0] = ft_strdup(token);
+		cmd->heredoc = ft_calloc(ft_heredoc_size(g_mini.tokens->token_array) + 1, sizeof(char *));
+	cmd->heredoc[cmd->s] = ft_strdup(token);
 	if (!cmd->refine)
-		cmd->refine = ft_calloc(1000, sizeof(char *));
-	cmd->refine[0] = ft_strdup(g_mini.tokens->quote_array[*index]);
+		cmd->refine = ft_calloc(ft_heredoc_size(g_mini.tokens->token_array) + 1, sizeof(char *));
+	cmd->refine[cmd->s++] = ft_strdup(g_mini.tokens->quote_array[*index]);
 	return (0);
 }
 
@@ -150,6 +150,7 @@ int	extract_argument(t_cmd *cmd, int *index)
 		/* preceding to next token */
 		*index = *index + 1;
 	}
+
 	/* check weather | is valid: has second parts after it or is not a `||` */
 	if (check_pipe(args, index))
 		return (1);
