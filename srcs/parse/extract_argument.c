@@ -26,10 +26,10 @@ static int	treat_heredoc(t_cmd *cmd, int *index)
 	}
 	/* Allocate memory for heredoc and refine arrays */
 	if (!cmd->heredoc)
-		cmd->heredoc = ft_calloc(10000, sizeof(char *));
+		cmd->heredoc = ft_calloc(1000, sizeof(char *));
 	cmd->heredoc[0] = ft_strdup(token);
 	if (!cmd->refine)
-		cmd->refine = ft_calloc(10000, sizeof(char *));
+		cmd->refine = ft_calloc(1000, sizeof(char *));
 	cmd->refine[0] = ft_strdup(g_mini.tokens->quote_array[*index]);
 	return (0);
 }
