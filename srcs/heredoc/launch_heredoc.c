@@ -3,6 +3,7 @@
 /**
  * Initializes a write_end by setting STDIN and STDOUT aprropriately.
  **/
+
 static void	init_write_end(t_heredoc *h_info, int i, int *j)
 {
 	int	pipefd[2];
