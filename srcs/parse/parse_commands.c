@@ -46,6 +46,7 @@ static void	init_commands_and_io(void)
 	{
 		g_mini.commands[i].in = STDIN;
 		g_mini.commands[i].out = STDOUT;
+		g_mini.commands[i].s = 0;
 		/* If something bad happened while extracting */
 		if(extract_argument(&g_mini.commands[i], &index))
 		{
