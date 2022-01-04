@@ -9,6 +9,7 @@ static int	read_heredoc(t_heredoc *h_info, t_cmd *cmd)
 	char	*h_line;
 	int		k;
 
+	/* Take the index of the right write end */
 	k = h_info->heredocs;
 	h_line = readline("> ");
 	if (h_line == NULL)
@@ -27,8 +28,8 @@ static int	read_heredoc(t_heredoc *h_info, t_cmd *cmd)
 	/* Output the heredoc information */
 	if (h_info->j == ft_matrixlen(cmd->heredoc))
 	{
-		ft_putstr_fd(h_line, k);
-		ft_putstr_fd("\n", k);
+		ft_putstr_fd(h_line, h_info->w_ends[k]);
+		ft_putstr_fd("\n", h_info->w_ends[k]);
 	}
 	free(h_line);
 	return (0);
