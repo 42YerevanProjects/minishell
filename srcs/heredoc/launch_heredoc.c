@@ -100,7 +100,7 @@ int	launch_heredoc(void)
 	/* If the heredoc was interrupted, update the status accordingly */
 	if (WEXITSTATUS(h_info.h_status) == 1)
 	{
-		g_mini.status = 1;
+		g_mini.status = 130;
 		ft_putstr_fd("\n", STDOUT);
 		return (1);
 	}
