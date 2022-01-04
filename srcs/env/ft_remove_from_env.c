@@ -1,25 +1,5 @@
 #include "../../includes/minishell.h"
 
-static char	*get_name(char *var)
-{
-	char	*name;
-	int		i;
-
-	i = 0;
-	while (var[i] && var[i] != '=')
-		i++;
-	name = (char *)malloc(sizeof(char) * i + 2);
-	i = 0;
-	while (var[i] && var[i] != '=')
-	{
-		name[i] = var[i];
-		i++;
-	}
-	name[i] = '=';
-	name[i + 1] = '\0';
-	return (name);
-}
-
 void	ft_remove_from_env(char *var)
 {
 	t_env	*head;
@@ -29,9 +9,11 @@ void	ft_remove_from_env(char *var)
 	prev = NULL;
 	while (head)
 	{
-		if (!ft_strcmp(get_name(head->value), get_name(var)))
+		if (!ft_strcmp(ft_separate_identifier(head->value), ft_separate_identifier(var)))
 		{
-			if (prev != NULL)
+			if (prev == NULL)
+				g_mini.env = head->next;
+			else
 				prev->next = head->next;
 			head->next = NULL;
 			head = NULL;
