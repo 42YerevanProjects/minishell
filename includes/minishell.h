@@ -38,6 +38,7 @@ typedef struct	s_cmd
 	char	**args;
 	int		in;
 	int		out;
+	int		s;
 	char	**heredoc;
 	char	**refine;
 }				t_cmd;
@@ -100,6 +101,7 @@ extern t_mini	g_mini;
 
 /* UTILS */
 int		ft_count_commands(char **token_array);
+int		ft_heredoc_size(char **token_array);
 void	ft_free_commands(t_cmd *cmds);
 void	ft_free_matrix(char **matrix);
 int     ft_convert_builtin(char *builtin);
