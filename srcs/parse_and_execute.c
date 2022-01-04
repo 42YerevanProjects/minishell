@@ -130,6 +130,7 @@ void	parse_and_execute(char *line)
 	if (!g_mini.commands || launch_heredoc())
 	{
 		ft_free_tokens();
+		ft_free_commands(g_mini.commands);
 		return ;
 	}
 	/* If everything is ok allocate memory for process IDs */
