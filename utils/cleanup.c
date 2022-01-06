@@ -6,7 +6,10 @@ void	ft_free_matrix(char **matrix)
 
 	i = 0;
 	while (matrix && matrix[i])
-		ft_memdel(matrix[i++]);
+	{
+		free(matrix[i]);
+		matrix[i++] = NULL;
+	}
 	if (matrix)
 		free(matrix);
 	matrix = NULL;
