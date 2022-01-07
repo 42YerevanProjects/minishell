@@ -11,7 +11,7 @@ int main(int argc, char **argv, char **env)
 	sig_init();
 	while (1)
 	{
-		line = readline("minishell ▸ ");
+		line = readline("\001\033[1;34m\002minishell ▸ \001\033[0;0m\002");
 		if (!line)
 		{
 			ft_putstr_fd("minishell: exit 💚", STDERR);
