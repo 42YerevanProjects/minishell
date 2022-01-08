@@ -57,7 +57,7 @@ static int	ft_change_dir(t_cmd *cmd, int *status, char *oldpwd)
 		else
 		{
 			free(oldpwd);
-			return (ft_minishell_error("cd: OLDPWD not set"));
+			return (ft_minishell_error("minishell: cd: OLDPWD not set"));
 		}
 	}
 	/* else if a path is specified */
@@ -99,7 +99,7 @@ int	ft_cd(t_cmd *cmd)
 		else
 		{
 			free(oldpwd);
-			return (ft_minishell_error("cd: HOME is not set"));
+			return (ft_minishell_error("minishell: cd: HOME is not set"));
 		}
 	}
 	/* Perform the change of the directory */
