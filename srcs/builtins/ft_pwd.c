@@ -14,7 +14,13 @@
 
 int	ft_pwd(t_cmd *cmd)
 {
-	ft_putstr_fd(ft_getenv("PWD"), cmd->out);
+	char	*pwd;
+	
+	pwd = ft_get_env("PWD");
+	if (pwd)
+		ft_putstr_fd(pwd, cmd->out);
+	else
+		ft_minishell_error("minishell: PWD is not set")
 	ft_putstr_fd("\n", cmd->out);
 	return (0);
 }
