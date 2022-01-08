@@ -33,13 +33,18 @@ void	ft_add_to_env(char *var)
 	head = g_mini.env;
 	if (!ft_contains_equal(var))
 		var = ft_strjoin(var, "=");
-	while (head)
+	if (head == NULL)
+		g_mini.env = new_node(var, NULL);
+	else
 	{
-		if (head->next == NULL)
+		while (head)
 		{
-			head->next = new_node(var, NULL);
-			break ;
+			if (head->next == NULL)
+			{
+				head->next = new_node(var, NULL);
+				break ;
+			}
+			head = head->next;
 		}
-		head = head->next;
 	}
 }
