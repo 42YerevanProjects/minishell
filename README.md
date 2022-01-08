@@ -65,6 +65,7 @@ __srcs:__
 	`parse:` The folder containing all the files related to parsing.
 	`env:` The folder containig util functions workig with environment variables. 
 	`builtins:` The folder containing the implementations of the builtin commands.
+	`heredoc`: The folder containing the function related to heredoc and its execution
 
 __utils:__
 	This folder contains the util functions used by this project.
@@ -91,7 +92,8 @@ You will be provided with a prompt and can use it as a shell.
 
 ## Credits
 
-WE got help from a 42 school student [aisraely](https://github.com/Mampacuk). He explained us the logic of the code and helped to test it.
+We got help from a 42 school student [aisraely](https://github.com/Mampacuk). He explained us the logic of the code and helped to test it.
+The people who completed the project are 42 studens [shovsepy](https://github.com/Sargis-Hovsepyan) and [abalaban](https://github.com/ArpyBalaban).
 
 ## Additional info
 
