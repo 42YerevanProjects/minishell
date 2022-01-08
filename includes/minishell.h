@@ -36,9 +36,9 @@
 typedef struct	s_cmd
 {
 	char	**args;
-	int		in;
-	int		out;
-	int		s;
+	int	in;
+	int	out;
+	int	s;
 	char	**heredoc;
 	char	**refine;
 }				t_cmd;
@@ -62,28 +62,28 @@ typedef struct s_expansion
 /* For storing the environment variables line by line as a node */
 typedef struct s_env
 {
-	char			*value;
+	char		*value;
 	struct s_env	*next;
 }				t_env;
 
 /* For refining the line by storing appropriate values from env */
 typedef struct s_refine
 {
-	char		*ptr;
-	char		*prefix;
-	char		*postfix;
-	char		*val;
+	char	*ptr;
+	char	*prefix;
+	char	*postfix;
+	char	*val;
 }				t_refine;
 
 /* A struct that helps to store and work heredoc information */
 typedef struct	s_heredoc
 {
-	int		j;
-	int		heredocs;
-	int		h_pid;
-	int		h_status;
-	int		*w_ends;
-	int		refined;
+	int	j;
+	int	heredocs;
+	int	h_pid;
+	int	h_status;
+	int	*w_ends;
+	int	refined;
 	char	*heredoc;
 }				t_heredoc;
 
@@ -93,40 +93,40 @@ typedef struct s_mini
 	t_env	*env;
 	t_cmd	*commands;
 	pid_t	*fam;
-	int		cmd_count;
-	int		status;
+	int	cmd_count;
+	int	status;
 }				t_mini;
 
 extern t_mini	g_mini;
 
 /* UTILS */
-int		ft_count_commands(char **token_array);
-int		ft_heredoc_size(char **token_array);
+int	ft_count_commands(char **token_array);
+int	ft_heredoc_size(char **token_array);
 void	ft_free_commands(t_cmd *cmds);
 void	ft_free_matrix(char **matrix);
 int     ft_convert_builtin(char *builtin);
-int		init(t_mini *mini, char **env);
+int	init(t_mini *mini, char **env);
 char	**ft_array_copy(char **args);
-int		ft_minishell_error(char *msg);
-int		ft_matrixlen(char **matrix);
+int	ft_minishell_error(char *msg);
+int	ft_matrixlen(char **matrix);
 t_cmd	*ft_find_command(pid_t pid);
-int		ft_token_num(char *line);
-int		ft_args_size(int index);
+int	ft_token_num(char *line);
+int	ft_args_size(int index);
 void	ft_free_tokens(void);
-int		ft_isnum(char *num);
-int		ft_isspace(char c);
+int	ft_isnum(char *num);
+int	ft_isspace(char c);
 void	ft_free_fam(void);
-int		ft_abs(int nb);
+int	ft_abs(int nb);
 
 /* ENV UTILS */
 t_env	*new_node(char *value, t_env *next);
 void	increment_shell_level(t_env *env);
-int		ft_is_valid_identifier(char *var);
-int		ft_is_valid_declaration(char *decl);
+int	ft_is_valid_identifier(char *var);
+int	ft_is_valid_declaration(char *decl);
 char	*ft_separate_identifier(char *var);
 char	**ft_env_to_array(t_env *enc);
 void	ft_remove_from_env(char *var);
-int		ft_env_contains(char *var);
+int	ft_env_contains(char *var);
 void	ft_add_to_env(char *var);
 char	*ft_getenv(char *var);
 void	ft_print_env(int fd);
@@ -140,24 +140,24 @@ void	sig_heredoc(void);
 /* PARSING */
 void	parse_and_execute(char *line);
 void	get_tokens(char *line);
-int		extract_token(char *line, char **token, char **quote);
-int		extract_argument(t_cmd *cmd, int *index);
+int	extract_token(char *line, char **token, char **quote);
+int	extract_argument(t_cmd *cmd, int *index);
 void	ft_append_token(char **token, char *line, int len, int expand);
 void	parse_commands(void);
-int		check_pipe(char **args, int *index);
+int	check_pipe(char **args, int *index);
 char	*ft_refine_line(char *line);
 
 /* HEREDOC */
-int		launch_heredoc(void);
+int	launch_heredoc(void);
 void	process_heredoc(t_heredoc *h_info);
 
 /* BUILTINS  */
-int		ft_echo(t_cmd *cmd);
-int		ft_cd(t_cmd *cmd);
-int		ft_pwd(t_cmd *cmd);
-int		ft_export(t_cmd *cmd);
-int		ft_unset(t_cmd *cmd);
-int		ft_env(t_cmd *cmd);
+int	ft_echo(t_cmd *cmd);
+int	ft_cd(t_cmd *cmd);
+int	ft_pwd(t_cmd *cmd);
+int	ft_export(t_cmd *cmd);
+int	ft_unset(t_cmd *cmd);
+int	ft_env(t_cmd *cmd);
 void	ft_exit(t_cmd *cmd);
 
 /* EXECUTING */
