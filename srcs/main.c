@@ -1,7 +1,20 @@
-#include "../includes/minishell.h"
-t_mini g_mini;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c	                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shovsepy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 12:34:45 by shovsepy          #+#    #+#             */
+/*   Updated: 2022/01/07 12:36:09 by shovsepy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main(int argc, char **argv, char **env)
+#include "../includes/minishell.h"
+
+t_mini	g_mini;
+
+int	main(int argc, char **argv, char **env)
 {
 	char	*line;
 
@@ -11,10 +24,10 @@ int main(int argc, char **argv, char **env)
 	sig_init();
 	while (1)
 	{
-		line = readline("\001\033[1;34m\002minishell ▸ \001\033[0;0m\002");
+		line = readline("minishell ▸ ");
 		if (!line)
 		{
-			ft_putstr_fd("minishell: exit 💚", STDERR);
+			ft_putstr_fd("minishell: exit 💚\n", STDERR);
 			return (SUCCESS);
 		}
 		parse_and_execute(line);
@@ -24,4 +37,3 @@ int main(int argc, char **argv, char **env)
 	}
 	return (SUCCESS);
 }
-

@@ -1,8 +1,16 @@
-#include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c	                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abalaban <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 12:46:34 by abalaban          #+#    #+#             */
+/*   Updated: 2022/01/07 12:46:12 by abalaban         ###   ########.fr       */
+/*									      */
+/* ************************************************************************** */
 
-/**
- * The function outputs the error in case variable is not a valid identifier.
- **/
+#include "../../includes/minishell.h"
 
 static void	unset_error(char *var)
 {
@@ -10,11 +18,6 @@ static void	unset_error(char *var)
 	ft_putstr_fd(var, STDERR);
 	ft_putstr_fd("': not a valid identifier\n", STDERR);
 }
-
-/**
- * Unsets the variable from the environment if the variable is present. Outputs errro
- * if the variable is not a valid identifier. Returns 0 on success, 1 otherwise.
- **/
 
 static int	ft_unset_variable(t_cmd *cmd)
 {
@@ -40,17 +43,12 @@ static int	ft_unset_variable(t_cmd *cmd)
 	return (status);
 }
 
-/**
- * The function mimics the behavior of the unset command in bash. It
- * returns 0 on success, 1 otherwise.
- **/
-
 int	ft_unset(t_cmd *cmd)
 {
 	if (ft_matrixlen(cmd->args) == 1)
 	{
-		ft_minishell_error("minishell: unset: Invalid number of args to unset");
+		ft_minishell_error("minishell: Invalid number of args to unset");
 		return (1);
 	}
-	return ft_unset_variable(cmd);
+	return (ft_unset_variable(cmd));
 }

@@ -53,8 +53,7 @@ int					ft_atoi(const char *str);
 size_t				ft_strlen(const char *str);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
-
-int     			ft_strcmp(const char *s1, const char *s2);
+int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strchr(const char *str, int c);
 char				*ft_strrchr(const char *str, int c);
 char				*ft_strnstr(const char *str, const char *sub_str,
@@ -62,7 +61,8 @@ char				*ft_strnstr(const char *str, const char *sub_str,
 char				*ft_strdup(const char *s1);
 char				*ft_substr(char const *str, unsigned int start, size_t len);
 char				*ft_strjoin(char const *str1, char const *str2);
-char				*ft_strjoin3(const char *s1, const char *s2, const char *s3);
+char				*ft_strjoin3(const char *s1, const char *s2,
+						const char *s3);
 char				*ft_strtrim(char const *str, char const *set);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));

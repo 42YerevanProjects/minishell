@@ -1,9 +1,16 @@
-#include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pwd.c	                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abalaban <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 12:46:34 by abalaban          #+#    #+#             */
+/*   Updated: 2022/01/07 12:46:12 by abalaban         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/**
- * The function mimics the behavior of pwd command in bash. It returns 0
- * on success and 1 otherwise.
- **/
+#include "../../includes/minishell.h"
 
 int	ft_pwd(t_cmd *cmd)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shovsepy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 12:34:45 by shovsepy          #+#    #+#             */
+/*   Updated: 2022/01/07 12:36:09 by shovsepy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -12,7 +24,6 @@
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
 
 # define STDIN 0
 # define STDOUT 1
@@ -31,9 +42,8 @@
 # define SYNTAX_ERROR 258
 # define UNKNOWN_COMMAND 127
 
-
 /* For storing information about every command */
-typedef struct	s_cmd
+typedef struct s_cmd
 {
 	char	**args;
 	int		in;
@@ -44,7 +54,7 @@ typedef struct	s_cmd
 }				t_cmd;
 
 /* For storing information about tokens and quotes */
-typedef struct s_token 
+typedef struct s_token
 {
 	char	**token_array;
 	char	**quote_array;
@@ -76,7 +86,7 @@ typedef struct s_refine
 }				t_refine;
 
 /* A struct that helps to store and work heredoc information */
-typedef struct	s_heredoc
+typedef struct s_heredoc
 {
 	int		j;
 	int		heredocs;
@@ -104,7 +114,7 @@ int		ft_count_commands(char **token_array);
 int		ft_heredoc_size(char **token_array);
 void	ft_free_commands(t_cmd *cmds);
 void	ft_free_matrix(char **matrix);
-int     ft_convert_builtin(char *builtin);
+int		ft_convert_builtin(char *builtin);
 int		init(t_mini *mini, char **env);
 char	**ft_array_copy(char **args);
 int		ft_minishell_error(char *msg);
@@ -137,6 +147,11 @@ void	sig_default(void);
 void	sig_ignore(void);
 void	sig_heredoc(void);
 
+void	supress_output(void);
+void	reprompt(int sig);
+void	sigquit(int sig);
+void	interrupt(int sig);
+
 /* PARSING */
 void	parse_and_execute(char *line);
 void	get_tokens(char *line);
@@ -150,6 +165,8 @@ char	*ft_refine_line(char *line);
 /* HEREDOC */
 int		launch_heredoc(void);
 void	process_heredoc(t_heredoc *h_info);
+void	ft_alloc_heredoc(t_cmd *cmd);
+void	ft_alloc_refine(t_cmd *cmd);
 
 /* BUILTINS  */
 int		ft_echo(t_cmd *cmd);

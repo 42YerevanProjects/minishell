@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_valid_identifier.c                           :+:      :+:    :+:   */
+/*   ft_alloc_heredoc.c	                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shovsepy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,18 @@
 
 #include "../../includes/minishell.h"
 
-int	ft_is_valid_identifier(char *var)
+void	ft_alloc_heredoc(t_cmd *cmd)
 {
-	int	i;
+	int	h_size;
 
-	i = 0;
-	if (!var)
-		return (0);
-	if (!(ft_isalpha(var[i]) || var[i] == '_') || var[i] == '=')
-		return (0);
-	i++;
-	while (var[i])
-	{
-		if (!(ft_isalnum(var[i]) || var[i] == '_') || var[i] == '=')
-			return (0);
-		i++;
-	}
-	return (1);
+	h_size = ft_heredoc_size(g_mini.tokens->token_array) + 1;
+	cmd->heredoc = ft_calloc(h_size, sizeof(char *));
+}
+
+void	ft_alloc_refine(t_cmd *cmd)
+{
+	int	h_size;
+
+	h_size = ft_heredoc_size(g_mini.tokens->token_array) + 1;
+	cmd->refine = ft_calloc(h_size, sizeof(char *));
 }

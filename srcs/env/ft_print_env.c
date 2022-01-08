@@ -1,9 +1,16 @@
-#include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_env.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abalaban <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 12:46:34 by abalaban          #+#    #+#             */
+/*   Updated: 2022/01/07 12:46:12 by abalaban         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/**
- * The function outputs the environment. I wraps the values
- * of the environment variables with double quotes.
- **/
+#include "../../includes/minishell.h"
 
 void	ft_print_env(int fd)
 {

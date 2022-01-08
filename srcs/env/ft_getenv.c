@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_env.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shovsepy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 12:34:45 by shovsepy          #+#    #+#             */
+/*   Updated: 2022/01/07 12:36:09 by shovsepy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 char	*ft_getenv_full(const char *var)
@@ -18,7 +30,7 @@ char	*ft_getenv_full(const char *var)
 	{
 		if (!ft_strncmp(head->value, identifier, var_len)
 			&& (head->value[var_len] == '='
-			|| head->value[var_len] == '\0'))
+				|| head->value[var_len] == '\0'))
 		{
 			free(identifier);
 			return (head->value);

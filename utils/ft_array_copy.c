@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_array_copy.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abalaban <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 12:46:34 by abalaban          #+#    #+#             */
+/*   Updated: 2022/01/07 12:46:12 by abalaban         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 char	**ft_array_copy(char **args)
@@ -14,5 +26,5 @@ char	**ft_array_copy(char **args)
 		i++;
 	}
 	copy[i] = NULL;
-	return copy;
+	return (copy);
 }
