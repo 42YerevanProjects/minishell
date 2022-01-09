@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **env)
 	(void) argv;
 	init(&g_mini, env);
 	sig_init();
-	while (1)
+	while (42)
 	{
 		line = readline("minishell ▸ ");
 		if (!line)
