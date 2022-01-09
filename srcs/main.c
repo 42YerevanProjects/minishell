@@ -9,7 +9,7 @@ int main(int argc, char **argv, char **env)
 	(void) argv;
 	init(&g_mini, env);
 	sig_init();
-	while (1)
+	while (42)
 	{
 		line = readline("\001\033[1;34m\002minishell ▸ \001\033[0;0m\002");
 		if (!line)
